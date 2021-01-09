@@ -7,6 +7,22 @@ function App() {
   const [balance, setBalance] = useState(0);
   const [customerID, setCustomerID] = useState(0);
 
+  const updateNameOnChange = (e) => {
+    setName(e.target.value);
+  }
+
+  const updateAgeOnChange = (e) => {
+    setAge(e.target.value);
+  }
+
+  const updateBalanceOnChange = (e) => {
+    setBalance(e.target.value);
+  }
+
+  const updateCustomerIdOnChange = (e) => {
+    setCustomerID(e.target.value);
+  }
+
 
   const postRequest = async (url, body) => {
     const response = await fetch(url,{
@@ -49,27 +65,19 @@ function App() {
       <form id="personal-form" onSubmit={(e)=> onSubmitForm(e)}>
 
         <label htmlFor="name">Name </label>
-        <input type="text" name="name" onChange={(e) => {
-          setName(e.target.value);
-        }}></input>
+        <input type="text" name="name" onChange={updateNameOnChange}></input>
       
         <label htmlFor="age">Age </label>
-        <input type="number" name="age" onChange={(e) => {
-          setAge(e.target.value);
-        }}></input>
+        <input type="number" name="age" onChange={updateAgeOnChange}></input>
 
         <label htmlFor="balance">Balance </label>
-        <input type="number" name="balance" onChange={(e) => {
-          setBalance(e.target.value);
-        }}></input>
+        <input type="number" name="balance" onChange={updateBalanceOnChange}></input>
         <button type="submit">send</button>
       </form>
 
       <form id="request" onSubmit={(e) => onRequestForm(e)}>
         <label htmlFor="customerID">Customer ID</label>
-        <input type="number" name="customerID" onChange={(e) => {
-          setCustomerID(e.target.value)
-        }}></input>
+        <input type="number" name="customerID" onChange={updateCustomerIdOnChange}></input>
         <button type="submit">request</button>
       </form>
     </div>
