@@ -8,12 +8,34 @@ function App() {
   const [customerID, setCustomerID] = useState(0);
 
 
+  const postRequest = async (url, body) => {
+    const response = await fetch(url,{
+      method: "POST",
+      headers:{
+        'content-type': 'application/json',
+      },
+      body:JSON.stringify(body)
+
+    })
+
+    if(!response.ok) {
+      console.log("error response is not okay")
+    }
+    
+   }
+
   const onSubmitForm = (e) => {
     //once button take state variables and send through api service 
     e.preventDefault();
-    console.log(name);
-    console.log(age);
-    console.log(balance);
+    const userInfo = {
+      name,
+      age,
+      balance
+    }
+    postRequest("http://localhost:8080", userInfo)
+    // console.log(name);
+    // console.log(age);
+    // console.log(balance);
   };
 
   const onRequestForm = (e) => {
